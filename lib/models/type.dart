@@ -1,18 +1,27 @@
-class Type {
-  String name;
-  String url;
+import 'package:challenge_pokeapi/models/result.dart';
 
-  Type({this.name, this.url});
+class Type {
+  int count;
+  List<Result> results;
+
+  Type({this.count, this.results});
 
   Type.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
-    url = json['url'];
+    count = json['count'];
+    if (json['results'] != null) {
+      results = new List<Result>();
+      json['results'].forEach((v) {
+        results.add(new Result.fromJson(v));
+      });
+    }
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
-    data['url'] = this.url;
+    data['count'] = this.count;
+    if (this.results != null) {
+      data['results'] = this.results.map((v) => v.toJson()).toList();
+    }
     return data;
   }
 }

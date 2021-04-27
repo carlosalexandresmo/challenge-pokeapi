@@ -4,7 +4,7 @@ import 'package:challenge_pokeapi/models/type_detail.dart';
 
 abstract class PokemonService {
 
-  Future<List<Type>> getTypes();
+  Future<Type> getTypes();
 
   Future<TypeDetail> getType(id);
 

@@ -11,10 +11,12 @@ class PokemonProvider implements PokemonService {
   Dio _dio = CustomDio().getEntityManagerFactory();
 
   @override
-  Future<List<Type>> getTypes() async {
+  Future<Type> getTypes() async {
     try {
+      print(Endpoints.type);
       final response = await _dio.get(Endpoints.type);
-      return (response.data as List).map((e) => Type.fromJson(e)).toList();
+      var data = Type.fromJson(response.data);
+      return data;
     } catch (e) {
       if (e is DioError) {
         print(e.message);
@@ -28,6 +30,7 @@ class PokemonProvider implements PokemonService {
   @override
   Future<DetailPokemon> getPokemon(id) async {
     try {
+      print('${Endpoints.pokemon}/$id');
       final response = await _dio.get('${Endpoints.pokemon}/$id');
       return DetailPokemon.fromJson(response.data);
     } catch (e) {

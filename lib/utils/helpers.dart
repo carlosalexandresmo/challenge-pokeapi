@@ -14,8 +14,8 @@ class Helpers {
     return string[0].toUpperCase() + string.substring(1);
   }
 
-  // static String capitalize2() {
-  //   return "${this[0].toUpperCase()}${this.substring(1)}";
-  // }
+  static String getParam(String url) {
+    return url.substring(url.length - 3).replaceAll('/', '');
+  }
 
 }
