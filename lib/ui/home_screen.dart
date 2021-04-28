@@ -26,8 +26,25 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: _scaffoldKey,
-      appBar: AppBar(),
-      body: _body(),
+      appBar: AppBar(
+        title: Text(
+          'Pokémon',
+          style: TextStyle(color: Colors.white),
+        ),
+        centerTitle: true,
+      ),
+      body: Container(
+        child: Column(
+          children: [
+            Container(
+              margin: EdgeInsets.all(16.0),
+              child: Image.network(
+                  'https://logosmarcas.net/wp-content/uploads/2020/05/Pokemon-Logo.png'),
+            ),
+            Expanded(child: _body()),
+          ],
+        ),
+      ),
     );
   }
 
@@ -38,12 +55,9 @@ class _HomeScreenState extends State<HomeScreen> {
         stream: _bloc.results,
         builder: (BuildContext context, AsyncSnapshot<dynamic> snapshot) {
           if (snapshot.hasData) {
-            print('snapshot.data');
-            print(snapshot.data);
-
             switch (snapshot.connectionState) {
               case ConnectionState.waiting:
-                return Indicator(scale: 1.0, color: AppColors.primary);
+                return Indicator(scale: 1.0, color: AppColors.accent);
                 break;
 
               case ConnectionState.active:
@@ -58,12 +72,12 @@ class _HomeScreenState extends State<HomeScreen> {
                         title: Text(result.name.capitalize()),
                         trailing: Icon(Icons.chevron_right),
                         onTap: () {
-                          print(result.url);
-                          print(Helpers.getParam(result.url));
+                          //print(Helpers.getParam(result.url));
                           Navigator.push(
                             context,
                             MaterialPageRoute(
                               builder: (context) => TypeScreen(
+                                  label: result.name,
                                   value: Helpers.getParam(result.url)),
                             ),
                           );

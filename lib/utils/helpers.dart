@@ -15,7 +15,8 @@ class Helpers {
   }
 
   static String getParam(String url) {
-    return url.substring(url.length - 3).replaceAll('/', '');
+    url = url.replaceAll("v2", '');
+    return url.replaceAll(RegExp("[a-zA-Z/:.]"), '');
   }
 
 }

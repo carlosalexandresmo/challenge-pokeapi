@@ -1,4 +1,4 @@
-import 'package:challenge_pokeapi/models/DetailPokemon.dart';
+import 'package:challenge_pokeapi/models/detail_pokemon.dart';
 import 'package:challenge_pokeapi/models/type.dart';
 import 'package:challenge_pokeapi/models/type_detail.dart';
 import 'package:challenge_pokeapi/services/PokemonService.dart';
