@@ -65,7 +65,7 @@ class _TypeScreenState extends State<TypeScreen> {
                       return Container(
                         child: ListView.builder(
                           shrinkWrap: false,
-                          itemCount: 16,
+                          itemCount: snapshot.data.length,
                           itemBuilder: (BuildContext context, int index) {
                             ListPokemon listPokemon = snapshot.data[index];
                             Pokemon pokemon = listPokemon.pokemon;
